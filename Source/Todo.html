@@ -1,0 +1,28 @@
+<html ng-app="ToDoApplication">
+<head>
+    <title>ToDo Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="ToDoController as tc">
+        <h1>ToDo Application</h1>
+        <h2>Add a Todo:</h2>
+        <p><input type="text" class="form-control" ng-model="tc.input"></input></p>
+        <p><button class="btn btn-primary" ng-click="tc.addItem()">Add</button></p>
+        <h2>Your Todos:</h2>
+        <button class="btn btn-warning" ng-hide="tc.edit" ng-click="tc.editItems()">Edit</button>
+        <button class="btn btn-success" ng-show="tc.edit" ng-click="tc.updateItems()">Done</button>
+        
+        <ol>
+            <li ng-repeat="i in tc.toDoList">
+                <span ng-hide="tc.edit" ng-bind="i"></span>
+                <button class="btn btn-danger" ng-hide="tc.edit" ng-click="tc.deleteItem($index)">Delete</button>
+                <input type="text" class="form-control" ng-model="i" ng-show="tc.edit"></input>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
